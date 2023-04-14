@@ -1,5 +1,6 @@
 from Grid import Grid
 from GridTest import GridTest
+from algorithm import *
 #from algorithm import create_bell_shape
 
 '''
@@ -32,15 +33,51 @@ can use a set to see if indexes of array respect the rules or not.
 
 '''
 def main():
-    gridA = Grid(minX=1.6, maxX=1.62, minY=0, maxY=0.18, xRes=0.001, yRes=0.01) 
-    gridB = Grid(minX=1.05, maxX=1.55, minY=0.19, maxY=0.47, xRes=0.001, yRes=0.01)
-    gridC = Grid(minX=1.63, maxX=2.85, minY=0.48, maxY=0.76, xRes=0.001, yRes=0.01)
-    gridD = Grid(minX=1.6, maxX=1.62, minY=0.77, maxY=0.95, xRes=0.01, yRes=0.01)
+    #gridA = Grid(minX=1.6, maxX=1.62, minY=0, maxY=0.18, xRes=0.001, yRes=0.01) 
+    #gridB = Grid(minX=1.05, maxX=1.55, minY=0.19, maxY=0.47, xRes=0.001, yRes=0.01)
+    #gridC = Grid(minX=1.63, maxX=2.85, minY=0.48, maxY=0.76, xRes=0.001, yRes=0.01)
+    #gridD = Grid(minX=1.6, maxX=1.62, minY=0.77, maxY=0.95, xRes=0.01, yRes=0.01)
+
+    #TODO: BUG WHEN TRYING THE FOLLOWING (X-AXIS OUTPUT IS [1.05, 1.2, 1.2, 1.4, 1.5, 1.55]):
+    #gridTest = Grid(minX=1.05, maxX=1.55, minY=0.19, maxY=0.47, xRes=0.10, yRes=0.06)
+    #print(gridTest.get_grid())
+    #print(gridTest.get_xAxis())
+    #print(gridTest.get_yAxis())
     #print("----- GRID TEST ------")
     #gridTest = GridTest(minX=1.6, maxX=1.62, minY=0, maxY=0.18, xRes=0.01, yRes=0.01)
 
+    ######### RULE TESTS ##############
+    #ruleTestData = [[(4, 0), (3, 1), (2, 2), (3, 3), (4, 4)]] #VALID
+    #ruleTestData = [[(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #VALID
+    #ruleTestData = [[(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #VALID
+    #ruleTestData = [[(2, 0), (1, 1), (0, 2), (1, 3), (2, 4)]] #VALID
+    #ruleTestData = [[(2, 0), (1, 1), (2, 2), (3, 3), (4, 4)]] #VALID
 
+    #ruleTestData = [[(4, 0), (3, 1), (4, 2), (3, 3), (4, 4)]] #INVALID
+    #ruleTestData = [[(4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]] #INVALID
+    #ruleTestData = [[(0, 0), (1, 1), (2, 2), (1, 3), (0, 4)]] #INVALID
+    #ruleTestData = [[(3, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #INVALID
 
+    '''
+    ruleTestData = [
+    [(4, 0), (3, 1), (2, 2), (3, 3), (4, 4)],
+    [(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)],
+    [(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)],
+    [(2, 0), (1, 1), (0, 2), (1, 3), (2, 4)],
+    [(2, 0), (1, 1), (2, 2), (3, 3), (4, 4)],
+    [(4, 0), (3, 1), (4, 2), (3, 3), (4, 4)],
+    [(4, 0), (4, 1), (4, 2), (4, 3), (4, 4)],
+    [(0, 0), (1, 1), (2, 2), (1, 3), (0, 4)],
+    [(3, 0), (3, 1), (3, 2), (3, 3), (4, 4)]
+    ]'''
+
+    #print(len(ruleTestData))
+      # Filter sets to only contain sets that follows the right lane change (first C shape) definition
+    #cleaned = []
+    #for combination in ruleTestData:
+    #    if  verify_permutation(combination):
+    #       cleaned.append(combination)
+    #print(len(cleaned))
 # TODO: Make grid creation dynamic (younis)
 # TODO: Max bell shaped curve rules (gimmmmmmmy)
 # TODO: make straight drive perm rules

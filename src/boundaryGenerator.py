@@ -18,7 +18,8 @@ def setup_boundary_grid(minX, maxX, minY, maxY, xRes, yRes, output):
     rows = int((maxY-minY)/yRes) + 1
 
     # define the grid for the scatter points
-    grid = [[0 for i in range(columns)] for i in range(rows)]
+    #grid = [[0 for i in range(columns)] for i in range(rows)]
+    grid = np.zeros((rows, columns), dtype=int)
 
     # Code adapted from https://stackoverflow.com/questions/6189956/easy-way-of-finding-decimal-places
     # Get the decimal places to help round the values properly to the chosen resolution.

@@ -50,8 +50,8 @@ def main():
 ######### Algorithm TESTS ##############
     # Algorithm test
     # generate combinations for a 2x2 array
-    rows = 5
-    cols = 5
+    rows = 3
+    cols = 2
     grid = np.zeros((rows, cols), dtype=int)
     result = generate_combinations_recursion(grid)
     print(result)
@@ -81,7 +81,7 @@ def main():
     #ruleTestData = [[(1, 0), (2, 1), (1, 2)]] #INVALID
     #ruleTestData = [[(0, 0), (1, 1), (2, 2)]] #INVALID
 
-    '''
+    '''   
     ruleTestData = [
     [(4, 0), (3, 1), (2, 2), (3, 3), (4, 4)],
     [(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)],
@@ -92,14 +92,15 @@ def main():
     [(4, 0), (4, 1), (4, 2), (4, 3), (4, 4)],
     [(0, 0), (1, 1), (2, 2), (1, 3), (0, 4)],
     [(3, 0), (3, 1), (3, 2), (3, 3), (4, 4)]
-    ]'''
+    ]
+    '''
 
    # print(len(ruleTestData))
       # Filter sets to only contain sets that follows the right lane change (first C shape) definition
-   # cleaned = []
-   # for combination in ruleTestData:
-   #     if verify_permutation(combination):
-   #        cleaned.append(combination)
+    #cleaned = []
+    #for combination in ruleTestData:
+    #    if verify_permutation(combination):
+    #       cleaned.append(combination)
    # print(len(cleaned))
 # TODO: Make grid creation dynamic (younis)
 # TODO: Max bell shaped curve rules (gimmmmmmmy)

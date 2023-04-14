@@ -1,5 +1,3 @@
-#TODO: MAKE ACCESS SPECIFIC X COORDINATE OF current/next coordinate!!!!!!!!
-
 # 1. Does x go down from previous point?
 def check_coordinate_decrease(currentCoordinate, nextCoordinate):
     return currentCoordinate > nextCoordinate 

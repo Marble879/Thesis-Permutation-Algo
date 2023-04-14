@@ -1,6 +1,6 @@
 import numpy as np
 import itertools
-
+from PermutationVerifier import *
 # This method generates a C-shaped curve and returns it in an array
 # Not used at the moment due to errors in the generation
 def generate_c_shape(rows, cols, width, offset, position):
@@ -49,11 +49,11 @@ def generate_combinations_recursion(arr):
     rows, cols = arr.shape
 
     def backtrack(curr_row):
-        nonlocal valid_combinations
+        nonlocal combinations
 
         # if we've reached the last row, add the current combination to the list of valid combinations
         if curr_row == rows:
-            valid_combinations.append([(j, i) for i in range(rows) for j in range(cols) if arr[i][j] == 1])
+            combinations.append([(j, i) for i in range(rows) for j in range(cols) if arr[i][j] == 1])
             return
 
         # try all possible combinations for the current row
@@ -70,13 +70,26 @@ def generate_combinations_recursion(arr):
                 arr[curr_row][j] = 0
 
     # create a list to store the valid combinations
-    valid_combinations = []
+    combinations = []
 
     # start backtracking from the first row
     backtrack(0)
 
     # sort the combinations from bottom right to top left
-    valid_combinations.sort(key=lambda x: (-x[0][0], -x[0][1]))
+    combinations.sort(key=lambda x: (-x[0][0], -x[0][1]))
+
+    
+    print("BEFORE RULES: ")
+    print(len(combinations))
+    print("--------------------------------")
+    valid_combinations = []
+   
+    for combination in combinations:
+        if verify_permutation(combination):
+            valid_combinations.append(combination)
+    
+    print("AFTER RULES: ")
+    print(len(valid_combinations))
 
     return valid_combinations
 

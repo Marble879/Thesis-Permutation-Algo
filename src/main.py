@@ -1,6 +1,7 @@
 from Grid import Grid
 from GridTest import GridTest
 from algorithm import *
+from PermutationVerifier import *
 #from algorithm import create_bell_shape
 
 '''
@@ -46,17 +47,39 @@ def main():
     #print("----- GRID TEST ------")
     #gridTest = GridTest(minX=1.6, maxX=1.62, minY=0, maxY=0.18, xRes=0.01, yRes=0.01)
 
+######### Algorithm TESTS ##############
+    # Algorithm test
+    # generate combinations for a 2x2 array
+    rows = 5
+    cols = 5
+    grid = np.zeros((rows, cols), dtype=int)
+    result = generate_combinations_recursion(grid)
+    print(result)
+
     ######### RULE TESTS ##############
+    #### 5x5####
     #ruleTestData = [[(4, 0), (3, 1), (2, 2), (3, 3), (4, 4)]] #VALID
     #ruleTestData = [[(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #VALID
     #ruleTestData = [[(4, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #VALID
     #ruleTestData = [[(2, 0), (1, 1), (0, 2), (1, 3), (2, 4)]] #VALID
     #ruleTestData = [[(2, 0), (1, 1), (2, 2), (3, 3), (4, 4)]] #VALID
+    #ruleTestData = [[(4, 0), (1, 1), (1, 2), (2, 3), (3, 4)]] #VALID
+    #ruleTestData = [[(4, 0), (3, 1), (0, 2), (3, 3), (4, 4)]] #VALID
+    #ruleTestData = [[(4, 0), (3, 1), (0, 2), (2, 3), (3, 4)]] #VALID
 
     #ruleTestData = [[(4, 0), (3, 1), (4, 2), (3, 3), (4, 4)]] #INVALID
     #ruleTestData = [[(4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]] #INVALID
     #ruleTestData = [[(0, 0), (1, 1), (2, 2), (1, 3), (0, 4)]] #INVALID
     #ruleTestData = [[(3, 0), (3, 1), (3, 2), (3, 3), (4, 4)]] #INVALID
+
+    #### 3x3 ####
+    #ruleTestData = [[(2, 0), (1, 1), (2, 2)]] #VALID
+    #ruleTestData = [[(2, 0), (0, 1), (2, 2)]] #VALID
+    #ruleTestData = [[(1, 0), (0, 1), (1, 2)]] #VALID
+
+    #ruleTestData = [[(0, 0), (0, 1), (1, 2)]] #INVALID
+    #ruleTestData = [[(1, 0), (2, 1), (1, 2)]] #INVALID
+    #ruleTestData = [[(0, 0), (1, 1), (2, 2)]] #INVALID
 
     '''
     ruleTestData = [
@@ -71,13 +94,13 @@ def main():
     [(3, 0), (3, 1), (3, 2), (3, 3), (4, 4)]
     ]'''
 
-    #print(len(ruleTestData))
+   # print(len(ruleTestData))
       # Filter sets to only contain sets that follows the right lane change (first C shape) definition
-    #cleaned = []
-    #for combination in ruleTestData:
-    #    if  verify_permutation(combination):
-    #       cleaned.append(combination)
-    #print(len(cleaned))
+   # cleaned = []
+   # for combination in ruleTestData:
+   #     if verify_permutation(combination):
+   #        cleaned.append(combination)
+   # print(len(cleaned))
 # TODO: Make grid creation dynamic (younis)
 # TODO: Max bell shaped curve rules (gimmmmmmmy)
 # TODO: make straight drive perm rules

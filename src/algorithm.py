@@ -1,6 +1,7 @@
 import numpy as np
 import itertools
 from PermutationVerifier import *
+
 # This method generates a C-shaped curve and returns it in an array
 # Not used at the moment due to errors in the generation
 def generate_c_shape(rows, cols, width, offset, position):
@@ -45,7 +46,7 @@ def generate_combinations(arr):
 # Time complexity: O(rows*2^columns) (to prove)
 # Uses list containing set of coordinates
 # Output sorted bottom to top
-def generate_combinations_recursion(arr):
+def generate_combinations_left_bell_recursion(arr):
     rows, cols = arr.shape
 
     def backtrack(curr_row):
@@ -85,7 +86,7 @@ def generate_combinations_recursion(arr):
     valid_combinations = []
    
     for combination in combinations:
-        if verify_permutation(combination):
+        if verify_permutation_left_bell(combination):
             valid_combinations.append(combination)
     
     print("AFTER RULES: ")
@@ -93,6 +94,87 @@ def generate_combinations_recursion(arr):
 
     return valid_combinations
 
+def generate_combinations_right_bell_recursion(arr):
+    rows, cols = arr.shape
+
+    def backtrack(curr_row):
+        nonlocal combinations
+
+        # if we've reached the last row, add the current combination to the list of valid combinations
+        if curr_row == rows:
+            combinations.append([(j, i) for i in range(rows) for j in range(cols) if arr[i][j] == 1])
+            return
+
+        # try all possible combinations for the current row
+        for j in range(cols):
+            # check if the current cell is empty
+            if arr[curr_row][j] == 0:
+                # place a 1 in the current cell
+                arr[curr_row][j] = 1
+
+                # backtrack to the next row
+                backtrack(curr_row+1)
+
+                # remove the 1 from the current cell to explore other possibilities
+                arr[curr_row][j] = 0
+
+    # create a list to store the valid combinations
+    combinations = []
+
+    # start backtracking from the first row
+    backtrack(0)
+
+    # sort the combinations from bottom right to top left
+    combinations.sort(key=lambda x: (-x[0][0], -x[0][1]))
+
+    
+    print("BEFORE RULES: ")
+    print(len(combinations))
+    print("--------------------------------")
+    valid_combinations = []
+   
+    for combination in combinations:
+        if verify_permutation_right_bell(combination):
+            valid_combinations.append(combination)
+    
+    print("AFTER RULES: ")
+    print(len(valid_combinations))
+
+    return valid_combinations
+
+
+# This method takes a 2D array as argument and returns a set of combinations
+# Each combination contains a straight driving coordinate pattern 
+def generate_straight(arr):
+    
+    rows, cols = arr.shape
+
+    combinations = []
+
+    # Iterate through columns
+    for i in range(cols):
+        # Iterate through rows and append to combinations set
+        combinations.append([(i, j) for j in range(rows)]) 
+    
+    return combinations
+    
+def generate_boxes_permutations(boxA, boxB, boxC, boxD):
+
+    permutations = []
+
+    # For each list from boxA (index i)
+    for i in boxA:
+        # For each list from boxB (index j)
+        for j in boxB:
+            # For each list from boxC (index k)
+            for k in boxC:
+                # For each list from boxD (index l)
+                for l in boxD:
+                    curr_perm = (i + j + k + l)
+                    permutations.append(curr_perm)
+
+
+    return permutations
 
 #x= ay^2+b
 #each a and b combo, a new parabula
@@ -102,3 +184,4 @@ def generate_combinations_recursion(arr):
 def generate_parabula(coeff, offset):
     plot = set
     return plot
+

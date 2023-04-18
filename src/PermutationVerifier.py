@@ -1,7 +1,7 @@
 from PermutationRules import *
 
 
-def verify_permutation(permutationOfPoints) -> bool:
+def verify_permutation_left_bell(permutationOfPoints) -> bool:
 
     # instantiate key point trackers.
     # Will be used to verify that all key points
@@ -32,8 +32,36 @@ def verify_permutation(permutationOfPoints) -> bool:
     else:
         return True
 
+def verify_permutation_right_bell(permutationOfPoints) -> bool:
 
-           
+    # instantiate key point trackers.
+    # Will be used to verify that all key points
+    # are included in order to confirm if the curve
+    # is a valid curve. 
+    entryPoint = 0 # set to 1 as first point will always be entry point
+    peakPoint = 0
+    exitPoint = 0
+    # Loop through each coordiante point.
+    # Stop one index early to prevent out of bounds error.
+    for i in range(len(permutationOfPoints)-1):
+        #print("(",permutationOfPoints[i][0],"|",permutationOfPoints[i+1][0],")") # TESTING CODE
+        # Check if we are still in an entry point
+        if check_coordinate_increase(permutationOfPoints[i][0], permutationOfPoints[i+1][0]):
+            if exitPoint > 0 or peakPoint > 0:
+                return False
+            entryPoint+=1 # Increment as potential peak found
+        # Check if we are going into an exit point and we have not had an entry, or peak yet
+        elif check_coordinate_decrease(permutationOfPoints[i][0], permutationOfPoints[i+1][0]) and entryPoint > 0:
+            exitPoint+=1
+            peakPoint+=1
+        # Check if we are in a same point
+        elif check_coordinate_same(permutationOfPoints[i][0], permutationOfPoints[i+1][0]):
+            peakPoint+=1
+    
+    if not exitPoint or not peakPoint or not entryPoint:
+        return False
+    else:
+        return True      
 
         
     # Define Entry detection, Peak detection, Exit detection variables

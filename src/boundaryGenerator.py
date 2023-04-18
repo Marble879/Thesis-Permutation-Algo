@@ -45,6 +45,50 @@ def setup_boundary_grid(minX, maxX, minY, maxY, xRes, yRes, output):
             print(row)
         print('-------------------')
     return grid, xAxis, yAxis
+    
+def setup_boundary_grid_row_col(minX, maxX, minY, maxY, rows, columns, dp, output):
+    """
+    Setsup the boundaries and grid to permutate on
+
+    :param minX: Defines the lowest morton value for the grid (x-axis).
+    :param maxX: Defines the maximum morton value for the grid (x-axis).
+    :param minY: Defines the lowest timestamp value for the grid (y-axis). 
+    :param maxY: Defines the maximum timestamp value for the grid (y-axis).
+    :columns: Defines the number of columns to split the grid by
+    :rows: Defines the number of rows to split the grid by
+    """
+
+
+    # define the grid for the scatter points
+    #grid = [[0 for i in range(columns)] for i in range(rows)]
+    grid = np.zeros((rows, columns), dtype=int)
+
+    # Code adapted from https://stackoverflow.com/questions/6189956/easy-way-of-finding-decimal-places
+    # Get the decimal places to help round the values properly to the chosen resolution.
+    #xAxisDp = int(Decimal(str(xRes)).as_tuple().exponent) * -1
+    #yAxisDp = int(Decimal(str(yRes)).as_tuple().exponent) * -1
+
+    xAxis = prepare_x_axis_row_col(minX, maxX, columns, dp)
+    yAxis = prepare_y_axis_row_col(minY, maxY, rows, dp)
+
+    # output the grid and axis
+    if output:
+        print("grid: \n")
+        for row in grid:
+            print(row)
+        print('-------------------')
+
+        print("xAxis: \n") 
+        print(xAxis)
+        print('-------------------')
+        
+        print("yAxis: \n")
+        for row in reversed(yAxis): 
+            print(row)
+        print('-------------------')
+    return grid, xAxis, yAxis
+
+
 
 def setup_boundary_grid_test(minX, maxX, minY, maxY, xRes, yRes, output):
     """

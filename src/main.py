@@ -78,6 +78,18 @@ def main():
     print("Lane changes: ", len(boxResult))
 
 
+    ######### EXPORT TO CSV #############
+    import csv 
+    for i in range (0, 9):
+        name = "out_"+str(i)+".csv"
+        with open(name, "w", newline="") as f:
+            writer = csv.writer(f, delimiter=';')
+            writer.writerow(["morton", "ts"])
+            writer.writerows(boxResult[i])
+
+    #####################################
+
+
 
     #TODO: BUG WHEN TRYING THE FOLLOWING (X-AXIS OUTPUT IS [1.05, 1.2, 1.2, 1.4, 1.5, 1.55]):
     #gridTest = Grid(minX=1.05, maxX=1.55, minY=0.19, maxY=0.47, xRes=0.10, yRes=0.06)

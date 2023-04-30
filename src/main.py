@@ -3,8 +3,7 @@ from GridTest import GridTest
 import numpy as np
 #from algorithm import *
 from PermutationVerifier import *
-from algorithm import generate_combinations_right_bell_recursion
-from algorithm import generate_combinations_left_bell_recursion
+from algorithm import generate_combinations_bell_recursion
 from algorithm import generate_straight
 from algorithm import generate_boxes_permutations
 from PermutationConverter import *
@@ -57,8 +56,8 @@ def main():
 
     # run permutations for each red box
     gridA.set_permutations(generate_straight(gridA.grid))
-    gridB.set_permutations(generate_combinations_left_bell_recursion(gridB.grid))
-    gridC.set_permutations(generate_combinations_right_bell_recursion(gridC.grid))
+    gridB.set_permutations(generate_combinations_bell_recursion(gridB.grid, "left"))
+    gridC.set_permutations(generate_combinations_bell_recursion(gridC.grid, "right"))
     gridD.set_permutations(generate_straight(gridD.grid))
 
     # convert permutations to (morton, ts)
